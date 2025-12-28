@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025杭州跨年狂欢夜·元旦祈福之旅</title>
+    <style>
+        :root {
+            --primary-color: #0a1929;
+            --accent-gold: #ffd700;
+            --accent-pink: #ff6b9d;
+            --accent-purple: #9d4edd;
+            --text-light: #ffffff;
+            --text-gray: #e0e0e0;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), #0c2a4a, #1a1a2e);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* 背景雪花效果 */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.9);
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 0;
+            text-shadow: 0 0 5px rgba(173, 216, 230, 0.8);
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 鼠标轨迹效果 */
+        .mouse-trail {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, var(--accent-pink), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: trailFade 0.8s ease-out forwards;
+            z-index: 9999;
+            box-shadow: 0 0 15px var(--accent-pink);
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2) translateY(-20px);
+            }
+        }
+
+        /* 鼠标跟随元素 */
+        .cursor-follower {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, var(--accent-gold), var(--accent-pink));
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.7;
+            transition: transform 0.1s ease;
+            z-index: 9998;
+            mix-blend-mode: screen;
+            box-shadow: 0 0 20px var(--accent-gold);
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero区域 */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, rgba(10, 25, 41, 0.85), rgba(12, 42, 74, 0.85));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.15), transparent);
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero h1::after {
+            content: '2025杭州跨年狂欢夜';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(20px);
+            opacity: 0.7;
+            z-index: -1;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: brightness(1) blur(20px); }
+            to { filter: brightness(1.2) blur(25px); }
+        }
+
+        .hero-date {
+            font-size: 1.5em;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+            animation: slideInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-cost {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--accent-gold);
+            animation: slideInUp 1s ease-out 0.7s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 费用表格 */
+        .cost-table {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--card-border);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .cost-table.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cost-table h2 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .cost-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cost-table th, .cost-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .cost-table th {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .cost-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.01);
+            transition: all 0.3s ease;
+        }
+
+        /* 时间轴 */
+        .timeline-section {
+            margin-bottom: 40px;
+        }
+
+        .timeline-header {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .timeline-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .timeline-header:hover::before {
+            left: 100%;
+        }
+
+        .timeline-header:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.4);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .timeline.active {
+            opacity: 1;
+            max-height: 5000px;
+            padding-bottom: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-pink));
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transform: translateX(-30px);
+            opacity: 0;
+            transition: all 0.6s ease;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+        }
+
+        .timeline-item.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-pink);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -52px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px var(--accent-gold);
+        }
+
+        .timeline-item:hover::before {
+            background: var(--accent-pink);
+            transform: scale(1.5);
+            box-shadow: 0 0 15px var(--accent-pink);
+        }
+
+        .timeline-time {
+            color: var(--accent-gold);
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            color: var(--text-light);
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .timeline-highlights {
+            color: var(--accent-pink);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        /* 详细信息卡片 */
+        .detail-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .detail-card h3 {
+            color: var(--accent-gold);
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-card h3::before {
+            content: '📍';
+            font-size: 1.2em;
+            filter: drop-shadow(0 0 5px var(--accent-gold));
+        }
+
+        .detail-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--card-border);
+        }
+
+        .detail-item:hover {
+            background: rgba(255, 107, 157, 0.15);
+            transform: translateY(-5px);
+            border-color: var(--accent-pink);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+        }
+
+        .detail-item strong {
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* 清单样式 */
+        .checklist {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .checklist.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .checklist h3 {
+            color: var(--accent-gold);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 10px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+            accent-color: var(--accent-pink);
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item input:checked + label {
+            text-decoration: line-through;
+            color: var(--text-gray);
+        }
+
+        /* 应急卡片 */
+        .emergency-card {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(157, 78, 221, 0.2));
+            border: 1px solid var(--accent-pink);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(30px);
+            backdrop-filter: blur(5px);
+        }
+
+        .emergency-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .emergency-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+            border-color: var(--accent-purple);
+        }
+
+        .emergency-card h4 {
+            color: var(--accent-pink);
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emergency-card h4::before {
+            content: '⚠️';
+            font-size: 1.2em;
+        }
+
+        /* 按钮样式 */
+        .action-button {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .action-button:hover::before {
+            left: 100%;
+        }
+
+        .action-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.6);
+        }
+
+        .action-button:active {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 2px 10px rgba(255, 107, 157, 0.3);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .timeline {
+                padding-left: 25px;
+            }
+            
+            .timeline-item::before {
+                left: -40px;
+            }
+            
+            .detail-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 加载动画 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-text {
+            font-size: 2.5em;
+            color: var(--accent-gold);
+            animation: pulse 1.2s ease-in-out infinite;
+            text-shadow: 0 0 15px var(--accent-gold);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-text">杭州跨年之旅</div>
+    </div>
+
+    <!-- 鼠标跟随元素 -->
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- Hero区域 -->
+        <div class="hero">
+            <h1>2025杭州跨年狂欢夜·元旦祈福之旅</h1>
+            <div class="hero-date">适用日期：2024年12月31日 - 2025年1月1日</div>
+            <div class="hero-cost">预估人均总费用：¥600-850元/人</div>
+        </div>
+
+        <!-- 费用表格 -->
+        <div class="cost-table" id="costTable">
+            <h2>💰 费用明细</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>主题</th>
+                        <th>核心亮点</th>
+                        <th>预估人均费用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12月31日 19:00-02:00</td>
+                        <td>🎊 跨年狂欢夜</td>
+                        <td>IMAX激光电影+天台音乐会+气球放飞</td>
+                        <td>¥450-600</td>
+                    </tr>
+                    <tr>
+                        <td>1月1日 10:00-17:00</td>
+                        <td>🙏 元旦祈福日</td>
+                        <td>灵隐寺新春祈福+西湖漫步</td>
+                        <td>¥150-250</td>
+                    </tr>
+                    <tr>
+                        <td><strong>合计</strong></td>
+                        <td><strong>2天1夜深度游</strong></td>
+                        <td><strong>6大主题体验</strong></td>
+                        <td><strong>¥600-850</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 第一天时间轴 -->
+        <div class="timeline-section">
+            <div class="timeline-header" onclick="toggleTimeline('day1')">
+                🎊 Day 1: 12月31日·跨年狂欢夜
+            </div>
+            <div class="timeline" id="day1">
+                <div class="timeline-item" onclick="showDetail('dinner')">
+                    <div class="timeline-time">19:00-20:30</div>
+                    <div class="timeline-title">晚餐时间：杭州中心商场美食探索</div>
+                    <div class="timeline-highlights">拱墅区展览东路150号·地铁1/3号线武林广场站</div>
+                </div>
+                
+                <div class="timeline-item" onclick="showDetail('movie')">
+                    <div class="timeline-time">20:30-22:30</div>
+                    <div class="timeline-title">观影时光：IMAX激光观影体验</div>
+                    <div class="timeline-highlights">浙影时代影城·杭州首家IMAX激光厅</div>
+                </div>
+                
+                <div class="timeline-item" onclick="showDetail('photo')">
+                    <div class="timeline-time">22:30-23:30</div>
+                    <div class="timeline-title">拍照打卡：武林广场光影时刻</div>
+                    <div class="timeline-highlights">八少女雕塑喷泉·三楼玻璃幕墙全景</div>
+                </div>
+                
+                <div class="timeline-item" onclick="showDetail('concert')">
+                    <div class="timeline-time">23:30-00:30</div>
+                    <div class="timeline-title">天台跨年音乐会：粉色泡泡狂欢</div>
+                    <div class="timeline-highlights">武林银泰A馆8楼天台·汪苏泷歌迷专场</div>
+                </div>
+                
+                <div class="timeline-item" onclick="showDetail('balloon')">
+                    <div class="timeline-time">00:30-01:00</div>
+                    <div class="timeline-title">放气球：万人倒数放飞瞬间</div>
+                    <div class="timeline-highlights">18英寸铝膜气球·金色烫印「2025」</div>
+                </div>
+                
+                <div class="timeline-item" onclick="showDetail('nightmarket')">
+                    <div class="timeline-time">01:00-02:00</div>
+                    <div class="timeline-title">夜宵时间：武林夜市深度游</div>
+                    <div class="timeline-highlights">180-200个摊位·老杭州葱包烩必吃</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二天时间轴 -->
+        <div class="timeline-section">
+            <div class="timeline-header" onclick="toggleTimeline('day2')">
+                🙏 Day 2: 1月1日·元旦祈福日
+            </div>
+            <div class="timeline" id="day2">
+                <div class="timeline-item" onclick="showDetail('temple')">
+                    <div class="timeline-time">10:00-12:00</div>
+                    <div class="timeline-title">灵隐寺·飞来峰：新年祈福之旅</div>
+                    <div class="timeline-highlights">飞来峰造像+灵隐寺中轴线+五百罗汉堂</div>
+                </div>
+                
+                <div class="timeline-item" onclick="showDetail('lunch')">
+                    <div class="timeline-time">12:00</div>
+                    <div class="timeline-title">午餐：绿茶餐厅（龙井路店）</div>
+                    <div class="timeline-highlights">绿茶烤肉+面包诱惑·景观位远眺茶园</div>
+                </div>
+                
+                <div class="timeline-item" onclick="showDetail('westlake')">
+                    <div class="timeline-time">下午</div>
+                    <div class="timeline-title">西湖漫步（自由探索）</div>
+                    <div class="timeline-highlights">手冲龙井茶¥38/壶·北高峰俯瞰杭州全景</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 详细信息卡片（默认隐藏，点击显示） -->
+        <div id="detailCards"></div>
+
+        <!-- 行前准备清单 -->
+        <div class="checklist" id="checklist">
+            <h3>📌 行前准备清单</h3>
+            <h4>提前3-5天准备</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="item1">
+                <label for="item1">猫眼/淘票票购买IMAX电影票（锁定第10-12排）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item2">
+                <label for="item2">喵街APP预约银泰天台音乐会门票（12月25日开约）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item3">
+                <label for="item3">西湖旅游公众号预约灵隐寺门票（避免现场排队）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item4">
+                <label for="item4">美味不用等小程序收藏绿茶餐厅（设置10:00提醒）</label>
+            </div>
+            
+            <h4>当天必备物品</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="item5">
+                <label for="item5">身份证（灵隐寺刷证入园）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item6">
+                <label for="item6">充电宝（2万毫安以上）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item7">
+                <label for="item7">保温杯（装姜茶御寒）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item8">
+                <label for="item8">现金¥100（夜市备用）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item9">
+                <label for="item9">暖宝宝5片+防滑鞋套（雨雪天气）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item10">
+                <label for="item10">三脚架/自拍杆</label>
+            </div>
+            
+            <h4>穿着建议</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="item11">
+                <label for="item11">31日晚：羽绒服+毛衣+保暖内衣+围巾+手套（夜间体感-5℃）</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="item12">
+                <label for="item12">1日白天：轻便羽绒服+卫衣（白天5-8℃）</label>
+            </div>
+        </div>
+
+        <!-- 应急预案 -->
+        <div id="emergencyPlans"></div>
+
+        <!-- 底部导航 -->
+        <div style="text-align: center; margin: 40px 0;">
+            <button class="action-button" onclick="shareToSocial('wechat')">分享到微信</button>
+            <button class="action-button" onclick="shareToSocial('weibo')">分享到微博</button>
+            <button class="action-button" onclick="shareToSocial('xiaohongshu')">分享到小红书</button>
+            <button class="action-button" onclick="navigateToMap()">打开高德地图</button>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let mouseX = 0;
+        let mouseY = 0;
+        let followerX = 0;
+        let followerY = 0;
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 1500);
+            
+            createSnowflakes();
+            initializeMouseEffects();
+            initializeScrollAnimations();
+            loadChecklistState();
+            initializeEmergencyPlans();
+        });
+
+        // 创建雪花效果
+        function createSnowflakes() {
+            const snowflakes = ['❄', '❅', '❆', '✻', '✼', '❋', '✱', '◦', '∘', '○'];
+            
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * window.innerWidth + 'px';
+                snowflake.style.fontSize = Math.random() * 15 + 10 + 'px';
+                snowflake.style.animationDuration = Math.random() * 8 + 12 + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                document.body.appendChild(snowflake);
+                
+                setTimeout(() => {
+                    if (snowflake.parentNode) {
+                        snowflake.remove();
+                    }
+                }, 20000);
+            }
+            
+            // 每隔一段时间创建新雪花
+            setInterval(createSnowflake, 300);
+            
+            // 初始创建一些雪花
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createSnowflake, i * 200);
+            }
+        }
+
+        // 初始化鼠标效果
+        function initializeMouseEffects() {
+            const follower = document.getElementById('cursorFollower');
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // 创建鼠标轨迹
+                const trail = document.createElement('div');
+                trail.className = 'mouse-trail';
+                trail.style.left = mouseX + 'px';
+                trail.style.top = mouseY + 'px';
+                document.body.appendChild(trail);
+                
+                setTimeout(() => {
+                    if (trail.parentNode) {
+                        trail.remove();
+                    }
+                }, 800);
+            });
+            
+            // 平滑跟随鼠标
+            function animateFollower() {
+                followerX += (mouseX - followerX) * 0.1;
+                followerY += (mouseY - followerY) * 0.1;
+                
+                follower.style.left = followerX - 15 + 'px';
+                follower.style.top = followerY - 15 + 'px';
+                
+                requestAnimationFrame(animateFollower);
+            }
+            animateFollower();
+        }
+
+        // 初始化滚动动画
+        function initializeScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // 添加特殊动画效果
+                        if (entry.target.classList.contains('cost-table')) {
+                            animateCostTable();
+                        } else if (entry.target.classList.contains('checklist')) {
+                            animateChecklist();
+                        } else if (entry.target.classList.contains('emergency-card')) {
+                            animateEmergencyCard(entry.target);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // 观察所有需要动画的元素
+            document.querySelectorAll('.cost-table, .timeline-item, .detail-card, .checklist, .emergency-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // 费用表格动画
+        function animateCostTable() {
+            const rows = document.querySelectorAll('.cost-table tbody tr');
+            rows.forEach((row, index) => {
+                setTimeout(() => {
+                    row.style.transform = 'scale(1.02)';
+                    row.style.background = 'rgba(255, 215, 0, 0.1)';
+                    setTimeout(() => {
+                        row.style.transform = 'scale(1)';
+                        row.style.background = '';
+                    }, 300);
+                }, index * 200);
+            });
+        }
+
+        // 清单动画
+        function animateChecklist() {
+            const items = document.querySelectorAll('.checklist-item');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.transform = 'translateX(10px)';
+                    setTimeout(() => {
+                        item.style.transform = 'translateX(0)';
+                    }, 300);
+                }, index * 100);
+            });
+        }
+
+        // 应急预案卡片动画
+        function animateEmergencyCard(card) {
+            card.style.animation = 'pulse 0.6s ease-in-out';
+            setTimeout(() => {
+                card.style.animation = '';
+            }, 600);
+        }
+
+        // 切换时间轴显示
+        function toggleTimeline(dayId) {
+            const timeline = document.getElementById(dayId);
+            const isActive = timeline.classList.contains('active');
+            
+            if (isActive) {
+                timeline.classList.remove('active');
+            } else {
+                timeline.classList.add('active');
+                
+                // 延迟显示时间轴项目
+                const items = timeline.querySelectorAll('.timeline-item');
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 150);
+                });
+            }
+            
+            // 滚动到时间轴位置
+            setTimeout(() => {
+                timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // 显示详细信息
+        function showDetail(type) {
+            const detailCards = document.getElementById('detailCards');
+            
+            // 如果已存在相同类型的卡片，先移除
+            const existingCard = document.querySelector(`[data-type="${type}"]`);
+            if (existingCard) {
+                existingCard.remove();
+                return;
+            }
+            
+            // 创建详情卡片
+            const card = document.createElement('div');
+            card.className = 'detail-card';
+            card.setAttribute('data-type', type);
+            
+            const details = getDetailContent(type);
+            card.innerHTML = `
+                <h3>${details.title}</h3>
+                <div class="detail-content">
+                    ${details.content}
+                </div>
+            `;
+            
+            detailCards.appendChild(card);
+            
+            // 滚动到卡片位置
+            setTimeout(() => {
+                card.classList.add('visible');
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+            
+            // 添加关闭按钮
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'action-button';
+            closeBtn.textContent = '关闭详情';
+            closeBtn.style.marginTop = '20px';
+            closeBtn.onclick = () => card.remove();
+            card.appendChild(closeBtn);
+        }
+
+        // 获取详细内容
+        function getDetailContent(type) {
+            const details = {
+                dinner: {
+                    title: '🍽️ 杭州中心商场美食探索',
+                    content: `
+                        <div class="detail-item">
+                            <strong>📍 地点</strong>
+                            拱墅区展览东路150号杭州中心·商场6-8楼餐饮层
+                        </div>
+                        <div class="detail-item">
+                            <strong>🚇 交通</strong>
+                            地铁1/3号线武林广场站D口，步行300米（4分钟）
+                        </div>
+                        <div class="detail-item">
+                            <strong>⏰ 营业时间</strong>
+                            10:00-22:00（31日延至次日01:00）
+                        </div>
+                        <div class="detail-item">
+                            <strong>💡 实用贴士</strong>
+                            31日晚餐厅等位时间延长1.5倍，建议18:30前到店<br>
+                            B2层有喜茶/奈雪，提前点单到店取餐<br>
+                            L1服务台消费满199元领停车券（免3小时，原价¥10/小时）
+                        </div>
+                    `
+                },
+                movie: {
+                    title: '🎬 IMAX激光观影体验',
+                    content: `
+                        <div class="detail-item">
+                            <strong>🎭 影院详情</strong>
+                            浙影时代影城（西湖文化广场店）<br>
+                            地址：西湖文化广场8号C座2A层<br>
+                            特色：杭州首家IMAX激光厅（银幕22m×12m，384座）
+                        </div>
+                        <div class="detail-item">
+                            <strong>🎫 购票攻略</strong>
+                            最佳座位：第10-12排中间（距银幕15米，水平视角35°）<br>
+                            购票平台：猫眼/淘票票提前3-5天锁定<br>
+                            票价：IMAX激光¥80-120，跨年场溢价20%<br>
+                            会员优惠：「浙影时代」小程序新用户赠¥15券
+                        </div>
+                        <div class="detail-item">
+                            <strong>💡 观影贴士</strong>
+                            3D眼镜押金¥20/副，离场退还<br>
+                            厅内温度约22℃，建议带薄外套<br>
+                            免取票：凭二维码扫码入场，节省15分钟
+                        </div>
+                    `
+                },
+                photo: {
+                    title: '📸 武林广场光影时刻',
+                    content: `
+                        <div class="detail-item">
+                            <strong>📍 打卡点位</strong>
+                            武林广场中心花坛（22:30-23:00）<br>
+                            八少女雕塑喷泉（23:00-23:15）<br>
+                            三楼玻璃幕墙（23:15-23:30）
+                        </div>
+                        <div class="detail-item">
+                            <strong>🎥 拍摄参数</strong>
+                            iPhone夜景模式+小型三脚架<br>
+                            俯拍广场全景，利用水花前景
+                        </div>
+                        <div class="detail-item">
+                            <strong>💡 装备建议</strong>
+                            小型三脚架（如大疆OM 6）<br>
+                            充电宝（2万毫安以上）<br>
+                            暖宝宝2-3片（夜间体感-2℃）
+                        </div>
+                    `
+                },
+                concert: {
+                    title: '🎵 天台跨年音乐会：粉色泡泡狂欢',
+                    content: `
+                        <div class="detail-item">
+                            <strong>📍 活动详情</strong>
+                            地点：武林银泰A馆8楼天台（延安路530号）<br>
+                            主题：「泷式浪漫」汪苏泷歌迷跨年应援专场<br>
+                            主办单位：银泰商业×网易云音乐
+                        </div>
+                        <div class="detail-item">
+                            <strong>🎫 入场须知</strong>
+                            门票：免费，需「喵街APP」预约（12月25日开放）<br>
+                            容量：限400人，23:30后准入率90%<br>
+                            装备：派发粉色荧光棒、发光头箍
+                        </div>
+                        <div class="detail-item">
+                            <strong>🎯 独家攻略</strong>
+                            最佳站位：天台东侧角落（近西湖方向）<br>
+                            穿着：防滑鞋（地面可能积雪），毛线帽（风力4-5级）<br>
+                            网络：现场4G/5G拥堵，提前下载歌曲离线
+                        </div>
+                    `
+                },
+                balloon: {
+                    title: '🎈 万人倒数放飞瞬间',
+                    content: `
+                        <div class="detail-item">
+                            <strong>📍 地点</strong>
+                            武林广场主广场（银泰A馆正对面，步行3分钟）
+                        </div>
+                        <div class="detail-item">
+                            <strong>🎈 活动详情</strong>
+                            气球规格：18英寸铝膜气球，「2025」金色烫印<br>
+                            购买渠道：现场小贩¥15-20/个（可议价至10元）<br>
+                            放飞时间：00:00-00:05统一放飞
+                        </div>
+                        <div class="detail-item">
+                            <strong>⚠️ 安全提醒</strong>
+                            气球线易缠绕，注意保管<br>
+                            放飞后迅速撤离，避免踩踏<br>
+                            环保：选择可降解材质
+                        </div>
+                    `
+                },
+                nightmarket: {
+                    title: '🍢 武林夜市深度游',
+                    content: `
+                        <div class="detail-item">
+                            <strong>📍 夜市详情</strong>
+                            地址：下城区武林路（龙游路至体育场路段）<br>
+                            规模：约180-200个摊位（小吃占60%，文创占40%）<br>
+                            营业时间：31日延至凌晨2:00
+                        </div>
+                        <div class="detail-item">
+                            <strong>🍜 必吃清单</strong>
+                            老杭州葱包烩（B18）：¥8/份，20年老师傅<br>
+                            温州瘦肉丸（C33）：¥12/碗，猪骨慢炖4小时<br>
+                            泰式榴莲芝士饼（D12）：¥25/份，金枕榴莲+马苏里拉
+                        </div>
+                        <div class="detail-item">
+                            <strong>💡 夜市生存指南</strong>
+                            支付方式：90%支持微信/支付宝，带少量现金¥50<br>
+                            防坑提示：警惕「拍照免费」的卡通人偶<br>
+                            洗手间：夜市中段，需排队5-8分钟
+                        </div>
+                    `
+                },
+                temple: {
+                    title: '🏛️ 灵隐寺·飞来峰：新年祈福之旅',
+                    content: `
+                        <div class="detail-item">
+                            <strong>📍 景区信息</strong>
+                            地址：西湖区灵隐路法云弄1号<br>
+                            门票：飞来峰景区¥45，灵隐寺香花券¥30<br>
+                            开放时间：07:00-18:15
+                        </div>
+                        <div class="detail-item">
+                            <strong>🚗 交通方案</strong>
+                            打车：武林广场→灵隐寺，车程8.2公里，约25分钟<br>
+                            公交：505路「灵隐」站，约40分钟<br>
+                            自驾：停车场¥20/小时，节假日8:00前到达
+                        </div>
+                        <div class="detail-item">
+                            <strong>💡 新年祈福特别提示</strong>
+                            着装：避免短裙、短裤（寺庙礼仪）<br>
+                            请香：寺外小店价格仅为寺内1/3，建议寺内请购<br>
+                            开光：11:00有法师统一开光仪式
+                        </div>
+                    `
+                },
+                lunch: {
+                    title: '🍽️ 绿茶餐厅（龙井路店）',
+                    content: `
+                        <div class="detail-item">
+                            <strong>📍 餐厅详情</strong>
+                            地址：西湖区龙井路83号（灵隐寺出口南行1.2公里）<br>
+                            营业时间：10:30-21:30（元旦期间不午休）
+                        </div>
+                        <div class="detail-item">
+                            <strong>🏆 必点菜品</strong>
+                            绿茶烤肉：¥68，猪颈肉腌制24小时<br>
+                            面包诱惑：¥42，香草冰淇淋+烤吐司<br>
+                            石锅鸡汤豆腐：¥38，内酯豆腐+土鸡汤
+                        </div>
+                        <div class="detail-item">
+                            <strong>🎫 等位攻略</strong>
+                            线上取号：「美味不用等」小程序10:00放号<br>
+                            等位时间：元旦中午约60-80分钟<br>
+                            景观位：2楼靠窗位可远眺茶园
+                        </div>
+                    `
+                },
+                westlake: {
+                    title: '🚶 西湖漫步（自由探索）',
+                    content: `
+                        <div class="detail-item">
+                            <strong>☕ 下午茶推荐</strong>
+                            绿茶餐厅隔壁「下满觉陇」：手冲龙井茶¥38/壶<br>
+                            灵隐寺出口「星巴克」：唯一景区店，杭州城市杯¥128
+                        </div>
+                        <div class="detail-item">
+                            <strong>🚶 游览方案</strong>
+                            A方案（轻松游1.5h）：龙井路→杨公堤→郭庄<br>
+                            B方案（标准游2.5h）：灵隐寺→法喜寺求姻缘<br>
+                            C方案（深度游4h）：北高峰索道→天下第一财神庙
+                        </div>
+                        <div class="detail-item">
+                            <strong>💡 贴士</strong>
+                            法喜寺求姻缘门票¥10，网红御守¥25/个<br>
+                            北高峰索道¥30往返，排队约40分钟
+                        </div>
+                    `
+                }
+            };
+            
+            return details[type] || { title: '', content: '' };
+        }
+
+        // 初始化应急预案
+        function initializeEmergencyPlans() {
+            const container = document.getElementById('emergencyPlans');
+            
+            const plans = [
+                {
+                    title: '场景1：IMAX电影票售罄',
+                    content: '备选影院：CGV影城（乐堤港店）ScreenX厅，打车15分钟<br>备选活动：取消电影，延长晚餐至21:00，直接去银泰天台占前排'
+                },
+                {
+                    title: '场景2：天台音乐会满员无法入场',
+                    content: 'Plan B：转战西湖湖滨银泰IN77 E区天台（有倒计时大屏）<br>Plan C：武林广场地面参与倒计时，效果同样震撼'
+                },
+                {
+                    title: '场景3：灵隐寺人流过大',
+                    content: '分流方案：改去法喜寺（梅灵北路）或净慈寺（南屏晚钟）<br>返程提醒：13:00后为返程高峰，打车困难，建议公交'
+                }
+            ];
+            
+            const header = document.createElement('h2');
+            header.textContent = '⚠️ 应急预案';
+            header.style.color = 'var(--accent-pink)';
+            header.style.marginBottom = '20px';
+            header.style.textAlign = 'center';
+            container.appendChild(header);
+            
+            plans.forEach((plan, index) => {
+                const card = document.createElement('div');
+                card.className = 'emergency-card';
+                card.innerHTML = `
+                    <h4>${plan.title}</h4>
+                    <p>${plan.content}</p>
+                `;
+                container.appendChild(card);
+                
+                // 延迟显示动画
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 200);
+            });
+        }
+
+        // 社交分享
+        function shareToSocial(platform) {
+            const title = '2025杭州跨年狂欢夜·元旦祈福之旅';
+            const description = '人均¥600-850的2天1夜深度游攻略，包含IMAX电影、天台音乐会、灵隐寺祈福等精彩活动！';
+            
+            switch(platform) {
+                case 'wechat':
+                    alert('请使用微信扫一扫分享\n\n' + title + '\n' + description);
+                    break;
+                case 'weibo':
+                    window.open(`https://service.weibo.com/share/share.php?title=${encodeURIComponent(title + '\n' + description)}`);
+                    break;
+                case 'xiaohongshu':
+                    alert('小红书分享文案已生成！\n\n' + title + '\n' + description + '\n\n#杭州跨年 #元旦祈福 #旅游攻略');
+                    break;
+            }
+        }
+
+        // 打开高德地图
+        function navigateToMap() {
+            const address = '武林广场';
+            window.open(`https://uri.amap.com/navigation?to=${encodeURIComponent(address)}&mode=car&policy=1&src=myapp&coordinate=gaode&callnative=0`);
+        }
+
+        // 保存清单状态
+        function loadChecklistState() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            checkboxes.forEach((checkbox, index) => {
+                const saved = localStorage.getItem(`checklist_${index}`);
+                if (saved === 'true') {
+                    checkbox.checked = true;
+                }
+                
+                checkbox.addEventListener('change', () => {
+                    localStorage.setItem(`checklist_${index}`, checkbox.checked);
+                    
+                    // 添加动画效果
+                    if (checkbox.checked) {
+                        checkbox.parentElement.style.transform = 'scale(1.05)';
+                        checkbox.parentElement.style.background = 'rgba(255, 107, 157, 0.1)';
+                        setTimeout(() => {
+                            checkbox.parentElement.style.transform = '';
+                            checkbox.parentElement.style.background = '';
+                        }, 300);
+                    }
+                });
+            });
+        }
+
+        // 添加页面交互提示
+        document.addEventListener('DOMContentLoaded', () => {
+            // 为所有按钮添加点击波纹效果
+            document.querySelectorAll('.action-button, .timeline-header').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.5);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // 添加波纹动画样式
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // 添加键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 's':
+                        e.preventDefault();
+                        alert('攻略已保存到本地！');
+                        break;
+                    case 'p':
+                        e.preventDefault();
+                        window.print();
+                        break;
+                }
+            }
+        });
+
+        // 添加打印样式
+        const printStyle = document.createElement('style');
+        printStyle.textContent = `
+            @media print {
+                body { background: white; color: black; }
+                .snowflake, .cursor-follower, .mouse-trail { display: none; }
+                .hero { background: white; border: 1px solid #ddd; }
+                .cost-table, .timeline-item, .detail-card, .checklist, .emergency-card { 
+                    background: white; 
+                    border: 1px solid #ddd; 
+                    box-shadow: none; 
+                }
+                .action-button { display: none; }
+            }
+        `;
+        document.head.appendChild(printStyle);
+    </script>
+</body>
+</html>
